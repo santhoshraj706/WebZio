@@ -4,13 +4,22 @@ const nodemailer = require('nodemailer');
 // Helper to sanitize private key from Vercel env
 function sanitizePrivateKey(key) {
     if (!key) return undefined;
-    // Remove surrounding quotes if they exist
-    let sanitized = key.trim();
-    if (sanitized.startsWith('"') && sanitized.endsWith('"')) {
-        sanitized = sanitized.substring(1, sanitized.length - 1);
+    
+    // 1. Remove all surrounding whitespaces and literal quotes
+    let sanitized = key.trim().replace(/^["']|["']$/g, '');
+    
+    // 2. Convert literal \n back to real newlines
+    sanitized = sanitized.replace(/\\n/g, '\n');
+    
+    // 3. Ensure it starts and ends with the correct PEM markers
+    if (!sanitized.startsWith('-----BEGIN PRIVATE KEY-----')) {
+        sanitized = '-----BEGIN PRIVATE KEY-----\n' + sanitized;
     }
-    // Handle literal \n and real newlines
-    return sanitized.replace(/\\n/g, '\n');
+    if (!sanitized.endsWith('-----END PRIVATE KEY-----')) {
+        sanitized = sanitized + '\n-----END PRIVATE KEY-----';
+    }
+    
+    return sanitized;
 }
 
 module.exports = async function handler(req, res) {
