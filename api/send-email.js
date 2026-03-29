@@ -1,27 +1,17 @@
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
 
-// Initialize Firebase Admin only if it hasn't been initialized
-if (!admin.apps.length) {
-    // Reconstructing the service account provided in the instructions
-    const serviceAccount = {
-        type: "service_account",
-        project_id: process.env.FIREBASE_PROJECT_ID,
-        private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-        private_key: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n') : undefined,
-        client_email: process.env.FIREBASE_CLIENT_EMAIL,
-        token_uri: "https://oauth2.googleapis.com/token",
-        auth_uri: "https://accounts.google.com/o/oauth2/auth",
-        auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-        universe_domain: "googleapis.com"
-    };
-
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount)
-    });
+// Helper to sanitize private key from Vercel env
+function sanitizePrivateKey(key) {
+    if (!key) return undefined;
+    // Remove surrounding quotes if they exist
+    let sanitized = key.trim();
+    if (sanitized.startsWith('"') && sanitized.endsWith('"')) {
+        sanitized = sanitized.substring(1, sanitized.length - 1);
+    }
+    // Handle literal \n and real newlines
+    return sanitized.replace(/\\n/g, '\n');
 }
-
-const db = admin.firestore();
 
 module.exports = async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -29,6 +19,36 @@ module.exports = async function handler(req, res) {
     }
 
     try {
+        // Initialize Firebase Admin only if it hasn't been initialized
+        if (!admin.apps.length) {
+            try {
+                const serviceAccount = {
+                    type: "service_account",
+                    project_id: process.env.FIREBASE_PROJECT_ID,
+                    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+                    private_key: sanitizePrivateKey(process.env.FIREBASE_PRIVATE_KEY),
+                    client_email: process.env.FIREBASE_CLIENT_EMAIL,
+                    token_uri: "https://oauth2.googleapis.com/token",
+                    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+                    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+                    universe_domain: "googleapis.com"
+                };
+
+                admin.initializeApp({
+                    credential: admin.credential.cert(serviceAccount)
+                });
+            } catch (initError) {
+                console.error('Firebase Init Error:', initError);
+                return res.status(500).json({ 
+                    success: false, 
+                    message: 'Server configuration error (Firebase)', 
+                    error: initError.message 
+                });
+            }
+        }
+
+        const db = admin.firestore();
+
         const {
             customerName,
             phoneNumber,
@@ -116,4 +136,5 @@ module.exports = async function handler(req, res) {
         console.error('API Error:', error);
         return res.status(500).json({ success: false, message: 'Order failed', error: error.message });
     }
-}
+};
+
