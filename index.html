@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webzio - Your business, online — beautifully.</title>
+    <meta name="description"
+        content="Webzio is a modern web development studio building clean, fast, and professional websites for small businesses and brands.">
+
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body class="midnight-azure">
+    <div class="bg-ambient">
+        <div class="nebula-blob"
+            style="width: 600px; height: 600px; background: rgba(100, 255, 218, 0.1); top: -10%; left: -10%;"></div>
+        <div class="nebula-blob"
+            style="width: 800px; height: 800px; background: rgba(59, 130, 246, 0.08); bottom: -20%; right: -10%; animation-delay: -5s;">
+        </div>
+    </div>
+
+
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <span class="bracket">[</span>
+                    <div class="bars">
+                        <div class="bar tall"></div>
+                        <div class="bar short pulse-animation"></div>
+                    </div>
+                    <div class="wordmark">
+                        <strong>Web</strong><span>zio</span>
+                    </div>
+                    <div class="bars">
+                        <div class="bar short pulse-animation"></div>
+                        <div class="bar tall"></div>
+                    </div>
+                    <span class="bracket">]</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Contact Us</a></li>
+                </ul>
+
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text fade-in">
+                <h1>Digital Experiences<br>That Define <span>Success.</span></h1>
+                <p>Webzio Studio crafts high-performance, visually stunning websites for ambitious brands. We turn your
+                    vision into a standard-setting digital presence.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">Our Packages <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-outline">Start a Project</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in">
+                <div class="glass-card">
+                    <div class="mockup-header">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="mockup-body">
+                        <span class="code-line">&lt;!-- Building standard-setting web apps --&gt;</span>
+                        <div style="font-size: 1.5rem; color: #fff; font-weight: bold; letter-spacing: 2px;">
+                            <span style="color: var(--highlight)">sys</span>.init("<span
+                                style="color: var(--accent)">success</span>")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Pricing -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Packages</h2>
+            <div class="services-grid">
+                <!-- Starter -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Starter</h3>
+                    <div class="service-price">₹3,000–₹5,000</div>
+                    <p>Perfect for quick landing pages and portfolios to establish your online presence.</p>
+                    <ul class="service-features">
+                        <li>1-page portfolio/landing page</li>
+                        <li>Mobile-friendly design</li>
+                        <li>Contact form setup</li>
+                        <li>Delivery in 3–5 days</li>
+                    </ul>
+                </div>
+
+                <!-- Business -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Business</h3>
+                    <div class="service-price">₹6,000–₹10,000</div>
+                    <p>Ideal for local shops, clinics, and growing businesses needing multiple pages.</p>
+                    <ul class="service-features">
+                        <li>3–5 page business site</li>
+                        <li>Image Gallery</li>
+                        <li>Google Maps integration</li>
+                        <li>WhatsApp button & SEO basics</li>
+                    </ul>
+                </div>
+
+                <!-- Premium -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Premium</h3>
+                    <div class="service-price">₹15,000+</div>
+                    <p>Full custom web experience with animations, CMS, and advanced integrations.</p>
+                    <ul class="service-features">
+                        <li>Full custom website</li>
+                        <li>Advanced animations</li>
+                        <li>CMS / Payment integration</li>
+                        <li>Delivery in 14–21 days</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="order-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Place an Order</h2>
+            <div class="form-container fade-in">
+                <form id="orderForm" class="order-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">Full Name *</label>
+                            <input type="text" id="customerName" name="customerName" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number *</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="+91 9876543210">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="whatsappNumber">WhatsApp Number</label>
+                            <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="Same as phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="productService">Service Package *</label>
+                            <select id="productService" name="productService" required>
+                                <option value="" disabled selected>Select a package</option>
+                                <option value="Starter (₹3k-₹5k)">Starter (₹3,000–₹5,000)</option>
+                                <option value="Business (₹6k-₹10k)">Business (₹6,000–₹10,000)</option>
+                                <option value="Premium (₹15k+)">Premium (₹15,000+)</option>
+                                <option value="Custom Project">Custom Project / Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quantity">Quantity / Setup Amount</label>
+                            <input type="number" id="quantity" name="quantity" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryAddress">Location / City</label>
+                            <input type="text" id="deliveryAddress" name="deliveryAddress"
+                                placeholder="Madurai, Tamil Nadu">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="specialNotes">Special Notes / Requirements</label>
+                        <textarea id="specialNotes" name="specialNotes" rows="4"
+                            placeholder="Tell us about your business or specific needs..."></textarea>
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" id="submitOrderBtn" class="btn btn-primary">Submit Order <i
+                                class="fas fa-paper-plane"></i></button>
+                    </div>
+
+                    <div id="formSuccessMessage" class="form-message success" style="display: none;">
+                        <i class="fas fa-check-circle"></i> Order placed successfully! We will contact you shortly.
+                    </div>
+                    <div id="formErrorMessage" class="form-message error" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i> Failed to submit order. Please try again or contact us
+                        directly.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Meet The Team</h2>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="member-image">S</div>
+                    <h3>Santhosh Raj T</h3>
+                    <p>Lead Developer</p>
+                    <div class="desc">Expert in clean code, technical architecture, and seamless performance. Turning
+                        coffee into responsive design.</div>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="member-image">K</div>
+                    <h3>Karthikeyan R J</h3>
+                    <p>Lead Developer</p>
+                    <div class="desc">Specialist in user experience, project coordination, and crafting beautiful web
+                        aesthetics that convert.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container fade-in">
+            <h2>Ready to transform your business?</h2>
+            <p>From idea to online in days. Let's build something exceptional.</p>
+            <a href="https://api.whatsapp.com/send?phone=916382629825" target="_blank" class="btn btn-primary"
+                style="background: #25D366; color: white;">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand fade-in">
+                    <a href="#" class="logo">
+                        <span class="bracket">[</span>
+                        <div class="bars">
+                            <div class="bar tall"></div>
+                            <div class="bar short"></div>
+                        </div>
+                        <div class="wordmark">
+                            <strong>Web</strong><span>zio</span>
+                        </div>
+                        <div class="bars">
+                            <div class="bar short"></div>
+                            <div class="bar tall"></div>
+                        </div>
+                        <span class="bracket">]</span>
+                    </a>
+                    <p>Your business, online — beautifully.</p>
+                    <div class="footer-socials">
+                        <a href="https://instagram.com/webzio_official" target="_blank" class="social-icon"><i
+                                class="fab fa-instagram"></i></a>
+
+                        <a href="#" class="social-icon"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links fade-in">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#team">Team</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact fade-in">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone-alt"></i> +91 6382629825<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+91 7845066991
+                    </p>
+                    <p><i class="fas fa-envelope"></i> devlopers36@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Madurai, Tamil Nadu</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Webzio Studio. Crafted in Madurai, India.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
