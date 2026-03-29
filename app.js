@@ -96,7 +96,13 @@ if (orderForm) {
                 body: JSON.stringify(data)
             });
             
-            const result = await response.json();
+            let result;
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                result = await response.json();
+            } else {
+                result = { message: await response.text() };
+            }
             
             if (response.ok) {
                 // Success
@@ -104,15 +110,19 @@ if (orderForm) {
                 successMsg.style.display = 'block';
             } else {
                 // Error from server
-                console.error(result);
+                console.error('API Error:', result);
                 errorMsg.style.display = 'block';
-                errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${result.message || 'Failed to submit order.'}`;
+                // If it's a Vercel/Node crash, show a snippet of the error
+                const errorDisplay = typeof result.message === 'string' && result.message.length > 100 
+                    ? 'Server Error (Check Vercel Logs)' 
+                    : (result.message || 'Failed to submit order.');
+                errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorDisplay}`;
             }
         } catch (error) {
-            // Network error
+            // Network error (fetch itself failed)
             console.error('Fetch error:', error);
             errorMsg.style.display = 'block';
-            errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> Connection error. Please try again.`;
+            errorMsg.innerHTML = `<i class="fas fa-exclamation-circle"></i> Connection error: ${error.message}`;
         } finally {
             // Restore UI
             submitBtn.disabled = false;
