@@ -38,11 +38,16 @@ module.exports = async function handler(req, res) {
                     credential: admin.credential.cert(serviceAccount)
                 });
             } catch (initError) {
-                console.error('Firebase Init Error:', initError);
+                console.error('Firebase Init Error Details:', initError);
                 return res.status(500).json({ 
                     success: false, 
-                    message: 'Server configuration error (Firebase)', 
-                    error: initError.message 
+                    message: `Firebase Config Error: ${initError.message}`, 
+                    debug: {
+                        hasProjectId: !!process.env.FIREBASE_PROJECT_ID,
+                        hasPrivateKey: !!process.env.FIREBASE_PRIVATE_KEY,
+                        hasClientEmail: !!process.env.FIREBASE_CLIENT_EMAIL,
+                        keyStart: process.env.FIREBASE_PRIVATE_KEY ? process.env.FIREBASE_PRIVATE_KEY.substring(0, 20) : 'none'
+                    }
                 });
             }
         }
